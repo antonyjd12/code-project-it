@@ -3117,3 +3117,44 @@ body.dark-mode .section-title {
         width: 100%;
     }
 }
+
+/* ========================================
+   CRITICAL MOBILE FIXES
+   ======================================== */
+
+/* 1. Prevent iOS Safari from auto-zooming on input focus */
+@media screen and (max-width: 768px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="password"],
+    select,
+    textarea {
+        font-size: 16px !important; /* MUST be 16px to prevent iOS zoom */
+    }
+}
+
+/* 2. Prevent horizontal scrolling (which breaks mobile layouts) */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+    position: relative;
+}
+
+/* 3. Make mobile menu links easier to tap with a finger */
+@media (max-width: 968px) {
+    .nav-links a {
+        padding: 15px 20px; /* Larger touch target */
+        display: block;
+    }
+    
+    /* Ensure modals don't overflow on small screens */
+    .delivery-modal-content,
+    .modal-content {
+        width: 95% !important;
+        max-height: 85vh !important;
+        padding: 20px !important;
+        margin: 10px auto !important;
+    }
+}
