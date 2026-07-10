@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JD Cucina - Authentic Rwandan & Italian cuisine in Kigali. Order online for delivery or book a table.">
+    <meta name="keywords" content="restaurant, Kigali, Rwanda, Italian food, Rwandan food, delivery, pizza, pasta">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- Title -->
+    <title>JD Cucina - Taste the Best Food in Kigali</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="loader.css">
+</head>
+<body>
+
+    <!-- ======================================== -->
+    <!-- PREMIUM LOADING SCREEN -->
+    <!-- ======================================== -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+
+        <div class="loader-content">
+            <div class="loader-logo">
+                <div class="loader-logo-ring"></div>
+                <div class="loader-logo-ring"></div>
+                <div class="loader-logo-ring"></div>
+                <i class="fas fa-utensils loader-logo-icon"></i>
+            </div>
+            <h1 class="loader-brand">JD RESTAURANT</h1>
+            <p class="loader-tagline">Experience Culinary Excellence</p>
+            <div class="loader-bar-container">
+                <div class="loader-bar"></div>
+            </div>
+            <div class="loader-text">
+                Preparing your experience
+                <span class="loader-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- TOP NAVIGATION BAR -->
+    <!-- ======================================== -->
+    <nav class="top-navbar">
+        <div class="container navbar-container">
+            <div class="logo">
+                <h1><i class="fas fa-utensils"></i> JD Cucina</h1>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search food, drinks, categories...">
+                <button onclick="searchFood()"><i class="fas fa-search"></i></button>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#popular">Popular</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#offers">Offers</a></li>
+                <li><a href="#reservation">Book Table</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <button class="icon-btn" onclick="toggleDarkMode()" title="Dark Mode">
+                    <i class="fas fa-moon" id="darkModeIcon"></i>
+                </button>
+                <button class="icon-btn" onclick="toggleWishlist()" title="Wishlist">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge" id="wishlistCount">0</span>
+                </button>
+                <button class="icon-btn cart-btn" onclick="toggleCart()" title="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge" id="cartCount">0</span>
+                </button>
+                <a href="auth.html" class="icon-btn login-btn" title="Login">
+                    <i class="fas fa-user"></i>
+                </a>
+                <button class="menu-toggle" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ======================================== -->
+    <!-- SHOPPING CART SIDEBAR -->
+    <!-- ======================================== -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> Your Cart</h3>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">0k</span>
+            </div>
+            <button class="checkout-btn" onclick="openDeliveryModal()">Order Delivery</button>
+        </div>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- WISHLIST SIDEBAR -->
+    <!-- ======================================== -->
+    <div class="wishlist-sidebar" id="wishlistSidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-heart"></i> Your Wishlist</h3>
+            <button class="close-cart" onclick="toggleWishlist()">&times;</button>
+        </div>
+        <div class="cart-items" id="wishlistItems">
+            <p class="empty-cart">Your wishlist is empty</p>
+        </div>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- LOGIN MODAL -->
+    <!-- ======================================== -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content auth-modal">
+            <span class="close-modal" onclick="toggleLogin()">&times;</span>
+            <h2>Welcome Back</h2>
+            <form class="auth-form">
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+                <p class="auth-switch">Don't have an account? <a href="auth.html">Register</a></p>
+            </form>
+        </div>
+    </div>
+
+    <main>
+        <!-- ======================================== -->
+        <!-- 1. HERO SECTION -->
+        <!-- ======================================== -->
+        <section id="home" class="hero">
+            <div class="hero-slider">
+                <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1920&q=80');">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <h1>Taste the Best Food in Town</h1>
+                        <p>Fresh Ingredients, Great Taste. Experience authentic Rwandan & Italian cuisine in the heart of Kigali.</p>
+                        <div class="hero-buttons">
+                            <a href="#menu" class="btn-primary"><i class="fas fa-shopping-bag"></i> Order Now</a>
+                            <a href="#reservation" class="btn-secondary"><i class="fas fa-calendar"></i> Book a Table</a>
+                            <a href="#menu" class="btn-outline"><i class="fas fa-book-open"></i> View Menu</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920&q=80');">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <h1>Fresh Ingredients, Great Taste</h1>
+                        <p>Locally sourced ingredients prepared by expert chefs. Every dish tells a story.</p>
+                        <div class="hero-buttons">
+                            <a href="#menu" class="btn-primary"><i class="fas fa-shopping-bag"></i> Order Now</a>
+                            <a href="#reservation" class="btn-secondary"><i class="fas fa-calendar"></i> Book a Table</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-dots">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- ADVANCED SEARCH SECTION -->
+        <!-- ======================================== -->
+        <section id="search-section" class="search-section">
+            <div class="container">
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchInputMain" placeholder="Search for food, drinks, categories, ingredients...">
+                        <button class="search-clear" onclick="clearSearch()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Autocomplete Dropdown -->
+                    <div class="search-dropdown" id="searchDropdown"></div>
+                </div>
+
+                <!-- FILTERS -->
+                <div class="filters-container">
+                    <!-- Category Filters -->
+                    <div class="filter-group">
+                        <h4><i class="fas fa-th-large"></i> Categories</h4>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-category="all" onclick="filterByCategory('all', this)">All</button>
+                            <button class="filter-btn" data-category="Burgers" onclick="filterByCategory('Burgers', this)">🍔 Burgers</button>
+                            <button class="filter-btn" data-category="Pizza" onclick="filterByCategory('Pizza', this)">🍕 Pizza</button>
+                            <button class="filter-btn" data-category="Chicken" onclick="filterByCategory('Chicken', this)">🍗 Chicken</button>
+                            <button class="filter-btn" data-category="Steak" onclick="filterByCategory('Steak', this)">🥩 Steak</button>
+                            <button class="filter-btn" data-category="Pasta" onclick="filterByCategory('Pasta', this)">🍝 Pasta</button>
+                            <button class="filter-btn" data-category="Seafood" onclick="filterByCategory('Seafood', this)">🍣 Seafood</button>
+                            <button class="filter-btn" data-category="Salads" onclick="filterByCategory('Salads', this)">🥗 Salads</button>
+                            <button class="filter-btn" data-category="Desserts" onclick="filterByCategory('Desserts', this)">🍰 Desserts</button>
+                            <button class="filter-btn" data-category="Coffee" onclick="filterByCategory('Coffee', this)">☕ Coffee</button>
+                            <button class="filter-btn" data-category="Soft Drinks" onclick="filterByCategory('Soft Drinks', this)">🥤 Drinks</button>
+                            <button class="filter-btn" data-category="Cocktails" onclick="filterByCategory('Cocktails', this)">🍹 Cocktails</button>
+                            <button class="filter-btn" data-category="Smoothies" onclick="filterByCategory('Smoothies', this)">🥤 Smoothies</button>
+                        </div>
+                    </div>
+
+                    <!-- Dietary Filters -->
+                    <div class="filter-group">
+                        <h4><i class="fas fa-leaf"></i> Dietary Options</h4>
+                        <div class="dietary-filters">
+                            <label class="dietary-label">
+                                <input type="checkbox" class="dietary-checkbox" value="Vegetarian" onchange="applyDietaryFilter()">
+                                <span>🥬 Vegetarian</span>
+                            </label>
+                            <label class="dietary-label">
+                                <input type="checkbox" class="dietary-checkbox" value="Vegan" onchange="applyDietaryFilter()">
+                                <span>🌱 Vegan</span>
+                            </label>
+                            <label class="dietary-label">
+                                <input type="checkbox" class="dietary-checkbox" value="Halal" onchange="applyDietaryFilter()">
+                                <span>☪️ Halal</span>
+                            </label>
+                            <label class="dietary-label">
+                                <input type="checkbox" class="dietary-checkbox" value="Gluten-Free" onchange="applyDietaryFilter()">
+                                <span>🌾 Gluten-Free</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Price & Sort -->
+                    <div class="filter-group">
+                        <h4><i class="fas fa-sliders-h"></i> Sort & Filter</h4>
+                        <div class="sort-filters">
+                            <div class="price-range">
+                                <label>Price Range:</label>
+                                <input type="number" id="priceMin" placeholder="Min" min="0" onchange="applyDietaryFilter()">
+                                <span>-</span>
+                                <input type="number" id="priceMax" placeholder="Max" min="0" onchange="applyDietaryFilter()">
+                                <span>k</span>
+                            </div>
+                            <select id="sortSelect" onchange="applySort()">
+                                <option value="popular">Most Popular</option>
+                                <option value="rating">Highest Rated</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="newest">Newest Items</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search Results -->
+                <div id="searchResults" class="search-results"></div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- 2. FEATURED CATEGORIES -->
+        <!-- ======================================== -->
+        <section id="categories" class="categories">
+            <div class="container">
+                <h2 class="section-title">Featured Categories</h2>
+                <p class="section-subtitle">Explore our diverse menu categories</p>
+                <div class="categories-grid">
+                    <div class="category-card" onclick="filterByCategory('burgers')">
+                        <div class="category-icon">🍔</div>
+                        <h3>Burgers</h3>
+                        <p>12 Items</p>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('pizza')">
+                        <div class="category-icon">🍕</div>
+                        <h3>Pizza</h3>
+                        <p>8 Items</p>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('chicken')">
+                        <div class="category-icon">🍗</div>
+                        <h3>Chicken</h3>
+                        <p>10 Items</p>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('steak')">
+                        <div class="category-icon">🥩</div>
+                        <h3>Steak</h3>
+                        <p>6 Items</p>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('pasta')">
+                        <div class="category-icon">🍝</div>
+                        <h3>Pasta</h3>
+                        <p>9 Items</p>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('salads')">
+                        <div class="category-icon">🥗</div>
+                        <h3>Salads</h3>
+                        <p>7 Items</p>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('seafood')">
+                        <div class="category-icon">🍣</div>
+                        <h3>Seafood</h3>
+                        <p>8 Items</p>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('desserts')">
+                        <div class="category-icon">🍰</div>
+                        <h3>Desserts</h3>
+                        <p>11 Items</p>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('coffee')">
+                        <div class="category-icon">☕</div>
+                        <h3>Coffee</h3>
+                        <p>6 Items</p>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('drinks')">
+                        <div class="category-icon">🥤</div>
+                        <h3>Drinks</h3>
+                        <p>15 Items</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- 3. POPULAR DISHES -->
+        <!-- ======================================== -->
+        <section id="popular" class="popular-dishes">
+            <div class="container">
+                <h2 class="section-title">Popular Dishes</h2>
+                <p class="section-subtitle">Our best-selling items loved by customers</p>
+                <div class="popular-grid">
+                    
+                    <div class="popular-card" data-id="1" data-name="Classic Beef Burger" data-price="14k">
+                        <div class="popular-image" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80');">
+                            <span class="popular-badge">Best Seller</span>
+                            <button class="wishlist-btn" onclick="addToWishlist(1)"><i class="far fa-heart"></i></button>
+                        </div>
+                        <div class="popular-info">
+                            <h3>Classic Beef Burger</h3>
+                            <p>Juicy beef patty with lettuce, tomato, and special sauce</p>
+                            <div class="popular-meta">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(4.9)</span>
+                                </div>
+                                <span class="price">14k</span>
+                            </div>
+                            <button class="add-to-cart" onclick="addToCart(1, 'Classic Beef Burger', 14)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="popular-card" data-id="2" data-name="BBQ Chicken Pizza" data-price="14k">
+                        <div class="popular-image" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=80');">
+                            <span class="popular-badge">Popular</span>
+                            <button class="wishlist-btn" onclick="addToWishlist(2)"><i class="far fa-heart"></i></button>
+                        </div>
+                        <div class="popular-info">
+                            <h3>BBQ Chicken Pizza</h3>
+                            <p>Grilled chicken with BBQ sauce and mozzarella</p>
+                            <div class="popular-meta">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span>(4.7)</span>
+                                </div>
+                                <span class="price">14k</span>
+                            </div>
+                            <button class="add-to-cart" onclick="addToCart(2, 'BBQ Chicken Pizza', 14)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="popular-card" data-id="3" data-name="Grilled Salmon" data-price="20k">
+                        <div class="popular-image" style="background-image: url('https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=500&q=80');">
+                            <span class="popular-badge">Chef's Pick</span>
+                            <button class="wishlist-btn" onclick="addToWishlist(3)"><i class="far fa-heart"></i></button>
+                        </div>
+                        <div class="popular-info">
+                            <h3>Grilled Salmon</h3>
+                            <p>Fresh salmon with lemon butter and herbs</p>
+                            <div class="popular-meta">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(4.8)</span>
+                                </div>
+                                <span class="price">20k</span>
+                            </div>
+                            <button class="add-to-cart" onclick="addToCart(3, 'Grilled Salmon', 20)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="popular-card" data-id="4" data-name="Chicken Alfredo Pasta" data-price="15k">
+                        <div class="popular-image" style="background-image: url('https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=500&q=80');">
+                            <button class="wishlist-btn" onclick="addToWishlist(4)"><i class="far fa-heart"></i></button>
+                        </div>
+                        <div class="popular-info">
+                            <h3>Chicken Alfredo Pasta</h3>
+                            <p>Creamy parmesan sauce with grilled chicken</p>
+                            <div class="popular-meta">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(4.9)</span>
+                                </div>
+                                <span class="price">15k</span>
+                            </div>
+                            <button class="add-to-cart" onclick="addToCart(4, 'Chicken Alfredo Pasta', 15)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- 4. WHY CHOOSE US -->
+        <!-- ======================================== -->
+        <section class="why-choose-us">
+            <div class="container">
+                <h2 class="section-title">Why Choose Us</h2>
+                <p class="section-subtitle">What makes us special</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-leaf"></i></div>
+                        <h3>Fresh Ingredients</h3>
+                        <p>Locally sourced, organic ingredients delivered daily</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-shipping-fast"></i></div>
+                        <h3>Fast Delivery</h3>
+                        <p>30-minute delivery guarantee or it's free</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-user-tie"></i></div>
+                        <h3>Professional Chefs</h3>
+                        <p>Expert chefs with 10+ years experience</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-tag"></i></div>
+                        <h3>Affordable Prices</h3>
+                        <p>Quality food at prices that won't break the bank</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-broom"></i></div>
+                        <h3>Clean Environment</h3>
+                        <p>5-star hygiene standards maintained</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-concierge-bell"></i></div>
+                        <h3>Quality Service</h3>
+                        <p>Friendly staff dedicated to your satisfaction</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-wifi"></i></div>
+                        <h3>Free Wi-Fi</h3>
+                        <p>High-speed internet for all our guests</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-users"></i></div>
+                        <h3>Family Friendly</h3>
+                        <p>Perfect atmosphere for families and kids</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- 5. ABOUT US -->
+        <!-- ======================================== -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2 class="section-title">About JD Cucina</h2>
+                        <p class="section-subtitle">A tradition of excellence since 1995</p>
+                        <p>Welcome to JD Cucina, where every meal is prepared with fresh ingredients and served with care. Located in the heart of Kigali, Rwanda, we bring together the rich culinary traditions of Rwanda and Italy.</p>
+                        <p>Our goal is to provide delicious food, excellent service, and a memorable dining experience for every customer. We use only the freshest, locally sourced ingredients from Rwandan farms and traditional family recipes passed down through generations.</p>
+                        <div class="about-stats">
+                            <div class="stat">
+                                <h3>28+</h3>
+                                <p>Years Experience</p>
+                            </div>
+                            <div class="stat">
+                                <h3>50+</h3>
+                                <p>Expert Chefs</p>
+                            </div>
+                            <div class="stat">
+                                <h3>100+</h3>
+                                <p>Menu Items</p>
+                            </div>
+                            <div class="stat">
+                                <h3>10k+</h3>
+                                <p>Happy Customers</p>
+                            </div>
+                        </div>
+                        <a href="#menu" class="btn-primary">Explore Our Menu</a>
+                    </div>
+                    <div class="about-images">
+                        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80" alt="Chef cooking">
+                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80" alt="Restaurant interior">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- 6. SPECIAL OFFERS -->
+        <!-- ======================================== -->
+        <section id="offers" class="special-offers">
+            <div class="container">
+                <h2 class="section-title">Special Offers</h2>
+                <p class="section-subtitle">Don't miss out on these amazing deals</p>
+                <div class="offers-grid">
+                    
+                    <div class="offer-card">
+                        <div class="offer-badge">20% OFF</div>
+                        <div class="offer-image" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="offer-content">
+                            <h3>20% Off Every Friday</h3>
+                            <p>Enjoy 20% discount on all orders every Friday. Dine-in and takeaway only.</p>
+                            <div class="offer-timer" data-date="2026-07-10">
+                                <span class="timer-label">Ends in:</span>
+                                <span class="timer-count">3 days</span>
+                            </div>
+                            <button class="btn-primary">Claim Offer</button>
+                        </div>
+                    </div>
+
+                    <div class="offer-card">
+                        <div class="offer-badge">BOGO</div>
+                        <div class="offer-image" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="offer-content">
+                            <h3>Buy 1 Get 1 Free Pizza</h3>
+                            <p>Order any large pizza and get a second one absolutely free. Limited time offer!</p>
+                            <div class="offer-timer">
+                                <span class="timer-label">Ends in:</span>
+                                <span class="timer-count">5 days</span>
+                            </div>
+                            <button class="btn-primary">Claim Offer</button>
+                        </div>
+                    </div>
+
+                    <div class="offer-card">
+                        <div class="offer-badge">FREE</div>
+                        <div class="offer-image" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="offer-content">
+                            <h3>Free Soft Drink with Every Burger</h3>
+                            <p>Get a complimentary soft drink with any burger order. Dine-in and delivery.</p>
+                            <div class="offer-timer">
+                                <span class="timer-label">Ends in:</span>
+                                <span class="timer-count">7 days</span>
+                            </div>
+                            <button class="btn-primary">Claim Offer</button>
+                        </div>
+                    </div>
+
+                    <div class="offer-card">
+                        <div class="offer-badge">COMBO</div>
+                        <div class="offer-image" style="background-image: url('https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="offer-content">
+                            <h3>Weekend Family Combo</h3>
+                            <p>Family meal for 4: 2 pizzas, 4 drinks, and dessert for only 45k. Saturdays & Sundays.</p>
+                            <div class="offer-timer">
+                                <span class="timer-label">Ends in:</span>
+                                <span class="timer-count">2 days</span>
+                            </div>
+                            <button class="btn-primary">Claim Offer</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- 7. CUSTOMER REVIEWS -->
+        <!-- ======================================== -->
+        <section class="customer-reviews">
+            <div class="container">
+                <h2 class="section-title">Customer Reviews</h2>
+                <p class="section-subtitle">What our customers say about us</p>
+                <div class="reviews-slider">
+                    
+                    <div class="review-card">
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"Amazing food and excellent service. The brochettes are the best I've ever tasted in Kigali. I will definitely come back with my family!"</p>
+                        <div class="reviewer">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Customer">
+                            <div>
+                                <h4>Jean Pierre</h4>
+                                <span>Regular Customer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"The burgers are the best I've ever tasted. Fast delivery and the food always arrives hot. Highly recommend JD Cucina!"</p>
+                        <div class="reviewer">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Customer">
+                            <div>
+                                <h4>Sarah Johnson</h4>
+                                <span>Food Blogger</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="review-text">"Great atmosphere and wonderful Italian pasta. The tiramisu is to die for. Perfect place for date night!"</p>
+                        <div class="reviewer">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="Customer">
+                            <div>
+                                <h4>David Mugisha</h4>
+                                <span>Verified Customer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"Excellent service and the isombe reminds me of home. Love that they combine Rwandan and Italian cuisine. Best restaurant in Kigali!"</p>
+                        <div class="reviewer">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&q=80" alt="Customer">
+                            <div>
+                                <h4>Marie Claire</h4>
+                                <span>Local Guide</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- 8. GALLERY -->
+        <!-- ======================================== -->
+        <section class="gallery">
+            <div class="container">
+                <h2 class="section-title">Our Gallery</h2>
+                <p class="section-subtitle">Take a look inside JD Cucina</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item" onclick="openLightbox(0)">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500&q=80" alt="Restaurant interior">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(1)">
+                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=500&q=80" alt="Dining area">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(2)">
+                        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=500&q=80" alt="Chef cooking">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(3)">
+                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=500&q=80" alt="Popular dishes">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(4)">
+                        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=500&q=80" alt="Drinks">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(5)">
+                        <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=500&q=80" alt="Desserts">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LIGHTBOX -->
+        <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+            <span class="close-lightbox">&times;</span>
+            <img class="lightbox-content" id="lightboxImg">
+        </div>
+
+        <!-- ======================================== -->
+        <!-- 9. RESERVATION SECTION -->
+        <!-- ======================================== -->
+        <section id="reservation" class="reservation">
+            <div class="container">
+                <div class="reservation-content">
+                    <div class="reservation-info">
+                        <h2>Book a Table</h2>
+                        <p>Reserve your table now and enjoy a memorable dining experience at JD Cucina</p>
+                        <ul class="reservation-features">
+                            <li><i class="fas fa-check"></i> Instant confirmation</li>
+                            <li><i class="fas fa-check"></i> Free cancellation up to 2 hours before</li>
+                            <li><i class="fas fa-check"></i> Special requests accommodated</li>
+                            <li><i class="fas fa-check"></i> Priority seating for members</li>
+                        </ul>
+                    </div>
+                    <form class="reservation-form" onsubmit="handleReservation(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" placeholder="Phone Number" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="email" placeholder="Email Address" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" placeholder="Number of Guests" min="1" max="20" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="date" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="time" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Special Requests (Optional)" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary btn-full">
+                            <i class="fas fa-calendar-check"></i> Book Now
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- 10. DELIVERY PARTNERS - ENHANCED -->
+        <!-- ======================================== -->
+        <section class="delivery-partners">
+            <div class="container">
+                <h2 class="section-title">Fast & Reliable Delivery</h2>
+                <p class="section-subtitle">Get your favorite meals delivered to your doorstep</p>
+
+                <!-- DELIVERY PROCESS STEPS -->
+                <div class="delivery-process">
+                    <h3 class="process-title">How Our Delivery Works</h3>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h4>Place Your Order</h4>
+                            <p>Browse our menu, select your favorite dishes, and add them to your cart. Checkout is quick and secure.</p>
+                        </div>
+
+                        <div class="process-connector">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h4>Order Confirmation</h4>
+                            <p>Receive instant confirmation via SMS and email. Our chefs start preparing your fresh meal immediately.</p>
+                        </div>
+
+                        <div class="process-connector">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h4>Fresh Preparation</h4>
+                            <p>Your meal is prepared fresh by our expert chefs using premium ingredients. Quality guaranteed.</p>
+                        </div>
+
+                        <div class="process-connector">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div class="step-icon">
+                                <i class="fas fa-motorcycle"></i>
+                            </div>
+                            <h4>Fast Delivery</h4>
+                            <p>Our professional delivery partners pick up your order and deliver it hot and fresh within 30 minutes.</p>
+                        </div>
+
+                        <div class="process-connector">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">5</div>
+                            <div class="step-icon">
+                                <i class="fas fa-smile"></i>
+                            </div>
+                            <h4>Enjoy Your Meal</h4>
+                            <p>Receive your order at your doorstep. Track your delivery in real-time and enjoy restaurant-quality food at home.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DELIVERY FEATURES -->
+                <div class="delivery-features">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>30-Minute Guarantee</h4>
+                        <p>We guarantee delivery within 30 minutes or your order is free. Fast, reliable, and always on time.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h4>Wide Coverage Area</h4>
+                        <p>We deliver across all of Kigali and surrounding areas. Check if we deliver to your location.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-temperature-low"></i>
+                        </div>
+                        <h4>Hot & Fresh</h4>
+                        <p>Specialized packaging keeps your food at the perfect temperature. Arrives hot, fresh, and ready to eat.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-location-arrow"></i>
+                        </div>
+                        <h4>Real-Time Tracking</h4>
+                        <p>Track your order from our kitchen to your doorstep. Know exactly when your food will arrive.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Safe & Hygienic</h4>
+                        <p>Contactless delivery available. All delivery partners follow strict hygiene and safety protocols.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <h4>Affordable Delivery Fee</h4>
+                        <p>Low delivery fees starting from just 2k. Free delivery on orders above 30k within 5km radius.</p>
+                    </div>
+                </div>
+
+                <!-- DELIVERY PARTNERS LOGOS -->
+                <div class="partners-section">
+                    <h3 class="partners-title">Our Trusted Delivery Partners</h3>
+                    <p class="partners-subtitle">Choose your preferred delivery platform</p>
+                    
+                    <div class="partners-grid">
+                        <div class="partner-card">
+                            <div class="partner-logo-wrapper">
+                                <i class="fas fa-motorcycle"></i>
+                            </div>
+                            <h4>Glovo</h4>
+                            <p>Fast delivery with real-time tracking. Order through the Glovo app.</p>
+                            <span class="partner-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>4.9/5</span>
+                            </span>
+                        </div>
+
+                        <div class="partner-card">
+                            <div class="partner-logo-wrapper">
+                                <i class="fas fa-shipping-fast"></i>
+                            </div>
+                            <h4>Uber Eats</h4>
+                            <p>Premium delivery service with excellent customer support and wide coverage.</p>
+                            <span class="partner-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>4.8/5</span>
+                            </span>
+                        </div>
+
+                        <div class="partner-card">
+                            <div class="partner-logo-wrapper">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h4>Yango Deli</h4>
+                            <p>Local favorite with competitive prices and reliable delivery service.</p>
+                            <span class="partner-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>4.9/5</span>
+                            </span>
+                        </div>
+
+                        <div class="partner-card">
+                            <div class="partner-logo-wrapper">
+                                <i class="fas fa-bicycle"></i>
+                            </div>
+                            <h4>JD Direct Delivery</h4>
+                            <p>Our own delivery team for fastest service. Order directly from our website.</p>
+                            <span class="partner-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>5.0/5</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DELIVERY INFORMATION -->
+                <div class="delivery-info">
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4><i class="fas fa-clock"></i> Delivery Hours</h4>
+                            <ul>
+                                <li><strong>Monday - Friday:</strong> 11:00 AM - 10:00 PM</li>
+                                <li><strong>Saturday - Sunday:</strong> 10:00 AM - 11:00 PM</li>
+                                <li><strong>Holidays:</strong> 12:00 PM - 9:00 PM</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-card">
+                            <h4><i class="fas fa-money-bill-wave"></i> Payment Methods</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Cash on Delivery</li>
+                                <li><i class="fas fa-check"></i> Mobile Money (MTN, Airtel)</li>
+                                <li><i class="fas fa-check"></i> Credit/Debit Cards</li>
+                                <li><i class="fas fa-check"></i> Bank Transfer</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-card">
+                            <h4><i class="fas fa-info-circle"></i> Important Notes</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Minimum order: 5k</li>
+                                <li><i class="fas fa-check"></i> Free delivery above 30k (5km radius)</li>
+                                <li><i class="fas fa-check"></i> Contactless delivery available</li>
+                                <li><i class="fas fa-check"></i> Special instructions welcome</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-card">
+                            <h4><i class="fas fa-phone-alt"></i> Need Help?</h4>
+                            <p>Having issues with your order? Our support team is here to help!</p>
+                            <div class="contact-buttons">
+                                <a href="tel:+250788123456" class="contact-btn">
+                                    <i class="fas fa-phone"></i> Call Us
+                                </a>
+                                <a href="https://wa.me/250788123456" class="contact-btn whatsapp">
+                                    <i class="fab fa-whatsapp"></i> WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA BANNER -->
+                <div class="delivery-cta">
+                    <div class="cta-content">
+                        <h3>Ready to Order?</h3>
+                        <p>Get your favorite meals delivered in 30 minutes or less!</p>
+                        <a href="#" onclick="openDeliveryModal(); return false;" class="cta-button">
+                            <i class="fas fa-shopping-bag"></i> Order for Delivery
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- 11. CONTACT INFORMATION -->
+        <!-- ======================================== -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="section-title">Contact Us</h2>
+                <p class="section-subtitle">We'd love to hear from you</p>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h3>Address</h3>
+                            <p>KN 5 Rd, Kigali, Rwanda</p>
+                        </div>
+                        <div class="contact-card">
+                            <i class="fas fa-phone"></i>
+                            <h3>Phone</h3>
+                            <p>+250 788 123 456</p>
+                            <p>+250 789 654 321</p>
+                        </div>
+                        <div class="contact-card">
+                            <i class="fas fa-envelope"></i>
+                            <h3>Email</h3>
+                            <p>hello@jdcucina.rw</p>
+                            <p>reservations@jdcucina.rw</p>
+                        </div>
+                        <div class="contact-card">
+                            <i class="fas fa-clock"></i>
+                            <h3>Opening Hours</h3>
+                            <p>Mon - Fri: 11:00 AM - 10:00 PM</p>
+                            <p>Sat - Sun: 10:00 AM - 11:00 PM</p>
+                        </div>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.1234567890123!2d30.0588!3d-1.9536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca76b0b0b0b0b%3A0x0b0b0b0b0b0b0b0b!2sKigali%2C%20Rwanda!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ======================================== -->
+    <!-- 12. FOOTER -->
+    <!-- ======================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3><i class="fas fa-utensils"></i> JD Cucina</h3>
+                    <p>Bringing the authentic taste of Rwanda and Italy to Kigali. Quality food, exceptional service, unforgettable memories.</p>
+                    <div class="newsletter">
+                        <h4>Subscribe to Our Newsletter</h4>
+                        <form onsubmit="handleNewsletter(event)">
+                            <input type="email" placeholder="Your email" required>
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#reservation">Reservations</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Our Menu</h4>
+                    <ul>
+                        <li><a href="#menu">Rwandan Dishes</a></li>
+                        <li><a href="#menu">Italian Cuisine</a></li>
+                        <li><a href="#menu">Pizza & Pasta</a></li>
+                        <li><a href="#menu">Seafood</a></li>
+                        <li><a href="#menu">Desserts & Drinks</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 JD Cucina. All rights reserved.</p>
+                <p>Designed with <i class="fas fa-heart"></i> in Kigali, Rwanda</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ======================================== -->
+    <!-- DELIVERY ORDER MODAL -->
+    <!-- ======================================== -->
+    <div class="delivery-modal" id="deliveryModal">
+        <div class="delivery-modal-content">
+            
+            <!-- Close Button -->
+            <button class="delivery-close" onclick="closeDeliveryModal()">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- Progress Steps -->
+            <div class="delivery-progress">
+                <div class="progress-step active" data-step="1">
+                    <div class="step-circle">1</div>
+                    <span>Your Order</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="2">
+                    <div class="step-circle">2</div>
+                    <span>Location</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-circle">3</div>
+                    <span>Delivery Method</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="4">
+                    <div class="step-circle">4</div>
+                    <span>Confirm</span>
+                </div>
+            </div>
+
+            <!-- STEP 1: ORDER ITEMS -->
+            <div class="delivery-step active" id="step1">
+                <h2><i class="fas fa-shopping-bag"></i> Your Order Items</h2>
+                <p class="step-description">Review the items you want to have delivered</p>
+                
+                <div class="order-items-list" id="deliveryItemsList">
+                    <!-- Items will be populated by JavaScript -->
+                </div>
+
+                <div class="order-summary-mini">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="deliverySubtotal">0k</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Packaging Fee:</span>
+                        <span>1k</span>
+                    </div>
+                </div>
+
+                <button class="delivery-next-btn" onclick="goToStep(2)">
+                    Continue to Location <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- STEP 2: LOCATION -->
+            <div class="delivery-step" id="step2">
+                <h2><i class="fas fa-map-marker-alt"></i> Delivery Location</h2>
+                <p class="step-description">Tell us where to deliver your order</p>
+
+                <!-- Use Current Location Button -->
+                <button class="location-btn" onclick="useCurrentLocation()">
+                    <i class="fas fa-location-arrow"></i>
+                    <span>Use My Current Location</span>
+                </button>
+
+                <div class="location-divider">
+                    <span>OR ENTER MANUALLY</span>
+                </div>
+
+                <!-- Location Form -->
+                <form id="locationForm" class="location-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> Full Name *</label>
+                            <input type="text" id="deliveryName" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-phone"></i> Phone Number *</label>
+                            <input type="tel" id="deliveryPhone" placeholder="+250 788 123 456" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-map"></i> Province *</label>
+                        <select id="deliveryProvince" required onchange="updateDistricts()">
+                            <option value="">Select Province</option>
+                            <option value="Kigali">Kigali City</option>
+                            <option value="Eastern">Eastern Province</option>
+                            <option value="Western">Western Province</option>
+                            <option value="Northern">Northern Province</option>
+                            <option value="Southern">Southern Province</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-city"></i> District *</label>
+                        <select id="deliveryDistrict" required onchange="updateSectors()">
+                            <option value="">Select District</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-map-pin"></i> Sector *</label>
+                        <select id="deliverySector" required>
+                            <option value="">Select Sector</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-road"></i> Street Address *</label>
+                        <input type="text" id="deliveryStreet" placeholder="KN 5 Rd, Near KCT" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-home"></i> Landmark / Building Name</label>
+                        <input type="text" id="deliveryLandmark" placeholder="e.g., Blue building, near Kigali Heights">
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-comment"></i> Delivery Instructions</label>
+                        <textarea id="deliveryNotes" placeholder="e.g., Call me when you arrive, leave at the gate..." rows="3"></textarea>
+                    </div>
+
+                    <!-- Map Preview -->
+                    <div class="map-preview" id="mapPreview">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <p>Map will appear here after selecting location</p>
+                    </div>
+                </form>
+
+                <div class="delivery-buttons">
+                    <button class="delivery-back-btn" onclick="goToStep(1)">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                    <button class="delivery-next-btn" onclick="goToStep(3)">
+                        Continue to Delivery Method <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 3: DELIVERY METHOD -->
+            <div class="delivery-step" id="step3">
+                <h2><i class="fas fa-truck"></i> Choose Delivery Method</h2>
+                <p class="step-description">Select how you want your order delivered</p>
+
+                <div class="delivery-methods">
+                    
+                    <!-- FOOT DELIVERY -->
+                    <div class="method-card" data-method="foot" data-fee="2" data-time="45-60">
+                        <div class="method-icon">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                        <div class="method-info">
+                            <h4>Foot Delivery</h4>
+                            <p class="method-time"><i class="far fa-clock"></i> 45-60 minutes</p>
+                            <p class="method-desc">For nearby locations (within 2km). Eco-friendly option.</p>
+                            <ul class="method-features">
+                                <li><i class="fas fa-check"></i> Within 2km radius</li>
+                                <li><i class="fas fa-check"></i> Small orders only (max 5kg)</li>
+                                <li><i class="fas fa-check"></i> Eco-friendly</li>
+                            </ul>
+                        </div>
+                        <div class="method-price">
+                            <span class="price-amount">2k</span>
+                            <span class="price-label">Delivery Fee</span>
+                        </div>
+                        <div class="method-radio">
+                            <input type="radio" name="deliveryMethod" value="foot" id="methodFoot">
+                        </div>
+                    </div>
+
+                    <!-- MOTORCYCLE DELIVERY -->
+                    <div class="method-card popular" data-method="motorcycle" data-fee="3" data-time="20-30">
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="method-icon">
+                            <i class="fas fa-motorcycle"></i>
+                        </div>
+                        <div class="method-info">
+                            <h4>Motorcycle Delivery</h4>
+                            <p class="method-time"><i class="far fa-clock"></i> 20-30 minutes</p>
+                            <p class="method-desc">Fast and reliable. Perfect for most orders in Kigali.</p>
+                            <ul class="method-features">
+                                <li><i class="fas fa-check"></i> Within 10km radius</li>
+                                <li><i class="fas fa-check"></i> Medium orders (max 15kg)</li>
+                                <li><i class="fas fa-check"></i> Fast delivery</li>
+                                <li><i class="fas fa-check"></i> Real-time tracking</li>
+                            </ul>
+                        </div>
+                        <div class="method-price">
+                            <span class="price-amount">3k</span>
+                            <span class="price-label">Delivery Fee</span>
+                        </div>
+                        <div class="method-radio">
+                            <input type="radio" name="deliveryMethod" value="motorcycle" id="methodMotorcycle" checked>
+                        </div>
+                    </div>
+
+                    <!-- CAR DELIVERY -->
+                    <div class="method-card" data-method="car" data-fee="5" data-time="30-45">
+                        <div class="method-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <div class="method-info">
+                            <h4>Car Delivery</h4>
+                            <p class="method-time"><i class="far fa-clock"></i> 30-45 minutes</p>
+                            <p class="method-desc">For large orders and longer distances. Safe and comfortable.</p>
+                            <ul class="method-features">
+                                <li><i class="fas fa-check"></i> Within 20km radius</li>
+                                <li><i class="fas fa-check"></i> Large orders (max 50kg)</li>
+                                <li><i class="fas fa-check"></i> Temperature controlled</li>
+                                <li><i class="fas fa-check"></i> Best for catering</li>
+                            </ul>
+                        </div>
+                        <div class="method-price">
+                            <span class="price-amount">5k</span>
+                            <span class="price-label">Delivery Fee</span>
+                        </div>
+                        <div class="method-radio">
+                            <input type="radio" name="deliveryMethod" value="car" id="methodCar">
+                        </div>
+                    </div>
+
+                    <!-- BICYCLE DELIVERY -->
+                    <div class="method-card" data-method="bicycle" data-fee="2" data-time="30-40">
+                        <div class="method-icon">
+                            <i class="fas fa-bicycle"></i>
+                        </div>
+                        <div class="method-info">
+                            <h4>Bicycle Delivery</h4>
+                            <p class="method-time"><i class="far fa-clock"></i> 30-40 minutes</p>
+                            <p class="method-desc">Eco-friendly option for medium distances. Great for small to medium orders.</p>
+                            <ul class="method-features">
+                                <li><i class="fas fa-check"></i> Within 5km radius</li>
+                                <li><i class="fas fa-check"></i> Medium orders (max 10kg)</li>
+                                <li><i class="fas fa-check"></i> 100% Eco-friendly</li>
+                                <li><i class="fas fa-check"></i> No traffic delays</li>
+                            </ul>
+                        </div>
+                        <div class="method-price">
+                            <span class="price-amount">2k</span>
+                            <span class="price-label">Delivery Fee</span>
+                        </div>
+                        <div class="method-radio">
+                            <input type="radio" name="deliveryMethod" value="bicycle" id="methodBicycle">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="delivery-buttons">
+                    <button class="delivery-back-btn" onclick="goToStep(2)">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                    <button class="delivery-next-btn" onclick="goToStep(4)">
+                        Review Order <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 4: CONFIRMATION -->
+            <div class="delivery-step" id="step4">
+                <h2><i class="fas fa-check-circle"></i> Order Confirmation</h2>
+                <p class="step-description">Review your order before placing it</p>
+
+                <!-- Order Summary -->
+                <div class="confirmation-section">
+                    <h3><i class="fas fa-utensils"></i> Order Items</h3>
+                    <div class="confirmation-items" id="confirmationItems">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Delivery Details -->
+                <div class="confirmation-section">
+                    <h3><i class="fas fa-map-marker-alt"></i> Delivery Details</h3>
+                    <div class="confirmation-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Name:</span>
+                            <span class="detail-value" id="confirmName">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Phone:</span>
+                            <span class="detail-value" id="confirmPhone">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Address:</span>
+                            <span class="detail-value" id="confirmAddress">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Notes:</span>
+                            <span class="detail-value" id="confirmNotes">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delivery Method -->
+                <div class="confirmation-section">
+                    <h3><i class="fas fa-truck"></i> Delivery Method</h3>
+                    <div class="confirmation-method" id="confirmMethod">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="confirmation-section">
+                    <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
+                    <div class="payment-options">
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="cash" checked>
+                            <div class="payment-info">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <span>Cash on Delivery</span>
+                            </div>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="momo">
+                            <div class="payment-info">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>Mobile Money (MTN/Airtel)</span>
+                            </div>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="card">
+                            <div class="payment-info">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Credit/Debit Card</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Total Summary -->
+                <div class="order-total-summary">
+                    <div class="total-row">
+                        <span>Items Subtotal:</span>
+                        <span id="totalSubtotal">0k</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Packaging Fee:</span>
+                        <span>1k</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Delivery Fee:</span>
+                        <span id="totalDelivery">0k</span>
+                    </div>
+                    <div class="total-row grand-total">
+                        <span>Total Amount:</span>
+                        <span id="grandTotal">0k</span>
+                    </div>
+                </div>
+
+                <div class="delivery-buttons">
+                    <button class="delivery-back-btn" onclick="goToStep(3)">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                    <button class="delivery-place-btn" onclick="placeOrder()">
+                        <i class="fas fa-check"></i> Place Order
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ORDER SUCCESS MODAL -->
+    <div class="order-success-modal" id="orderSuccessModal">
+        <div class="success-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Order Placed Successfully!</h2>
+            <p>Your order has been received and is being prepared.</p>
+            
+            <div class="order-details-success">
+                <div class="detail-item">
+                    <i class="fas fa-receipt"></i>
+                    <div>
+                        <strong>Order ID:</strong>
+                        <span id="successOrderId">#JD0000</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Estimated Delivery:</strong>
+                        <span id="successTime">30-45 minutes</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <div>
+                        <strong>Total Amount:</strong>
+                        <span id="successTotal">0k</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="success-tracking">
+                <p><i class="fas fa-info-circle"></i> You'll receive SMS updates about your order status.</p>
+            </div>
+
+            <button class="success-btn" onclick="closeSuccessModal()">
+                <i class="fas fa-home"></i> Back to Home
+            </button>
+        </div>
+    </div>
+
+    <!-- LIVE CHAT BUTTON -->
+    <div class="live-chat" onclick="toggleChat()">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript Files -->
+    <script src="script.js"></script>
+    <script src="search.js"></script>
+    <script src="delivery.js"></script>
+    <script src="loader.js"></script>
+</body>
+</html>
