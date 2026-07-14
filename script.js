@@ -312,3 +312,196 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(style);
 });
+
+// ========================================
+// MENU FILTER FUNCTIONALITY
+// ========================================
+function filterMenu(category) {
+    const menuCards = document.querySelectorAll('.menu-card');
+    const buttons = document.querySelectorAll('.menu-cat-btn');
+    
+    // Update active button
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    // Filter cards
+    menuCards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+            card.classList.remove('hidden');
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+}
+
+// Menu card click to show details (reuse modal from earlier)
+document.addEventListener('click', function(e) {
+    const menuCard = e.target.closest('.menu-card');
+    if (menuCard && !e.target.closest('.add-to-cart-btn')) {
+        const name = menuCard.dataset.name;
+        const description = menuCard.dataset.description;
+        const ingredients = menuCard.dataset.ingredients;
+        const price = menuCard.dataset.price;
+        
+        // Show in modal (reuse existing modal system)
+        if (typeof showModal === 'function') {
+            showModal(name, description, ingredients, price);
+        }
+    }
+});
+
+// ========================================
+// MENU INTERACTION FUNCTIONS
+// ========================================
+
+// Quick Add to Cart (from menu card)
+function quickAddToCart(id, name, price, image) {
+    addToCart(id, name, price);
+    
+    // Show notification
+    showNotification(`${name} added to cart!`);
+    
+    // Animate cart icon
+    const cartIcon = document.querySelector('.cart-btn i');
+    cartIcon.style.animation = 'bounce 0.5s';
+    setTimeout(() => {
+        cartIcon.style.animation = '';
+    }, 500);
+}
+
+// Show Item Details Modal
+function showItemDetails(card) {
+    const name = card.dataset.name;
+    const description = card.dataset.description;
+    const ingredients = card.dataset.ingredients;
+    const price = card.dataset.price;
+    const image = card.dataset.image;
+    const id = card.dataset.id;
+    
+    // Create modal if it doesn't exist
+    let modal = document.getElementById('itemDetailsModal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'itemDetailsModal';
+        modal.className = 'item-details-modal';
+        document.body.appendChild(modal);
+    }
+    
+    // Populate modal
+    modal.innerHTML = `
+        <div class="item-details-content">
+            <button class="item-details-close" onclick="closeItemDetails()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="item-details-image" style="background-image: url('${image}');"></div>
+            <div class="item-details-body">
+                <h2>${name}</h2>
+                <p class="description">${description}</p>
+                <div class="ingredients">
+                    <h4><i class="fas fa-list"></i> Ingredients</h4>
+                    <p>${ingredients}</p>
+                </div>
+                <div class="item-details-footer">
+                    <span class="price">${price}k</span>
+                    <button class="order-btn-large" onclick="quickAddToCart(${id}, '${name}', ${price}, '${image}'); closeItemDetails();">
+                        <i class="fas fa-shopping-bag"></i> Order Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close Item Details Modal
+function closeItemDetails() {
+    const modal = document.getElementById('itemDetailsModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('item-details-modal')) {
+        closeItemDetails();
+    }
+});
+
+// Close modal with ESC key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeItemDetails();
+    }
+});
+
+// Menu Filter Function
+function filterMenu(category, btn) {
+    const menuCards = document.querySelectorAll('.menu-card');
+    const buttons = document.querySelectorAll('.menu-cat-btn');
+    
+    // Update active button
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    // Filter cards
+    menuCards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+            card.classList.remove('hidden');
+            card.style.display = 'block';
+        } else {
+            card.classList.add('hidden');
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Notification function (if not already in your code)
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 30px;
+        background: linear-gradient(135deg, #d35400, #a04000);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        z-index: 9999;
+        font-weight: 600;
+        animation: slideInRight 0.3s ease;
+    `;
+    notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// Add animation styles if not already present
+if (!document.getElementById('notification-animations')) {
+    const style = document.createElement('style');
+    style.id = 'notification-animations';
+    style.textContent = `
+        @keyframes slideInRight {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(400px); opacity: 0; }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+    `;
+    document.head.appendChild(style);
+}

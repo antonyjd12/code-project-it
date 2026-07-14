@@ -463,10 +463,409 @@
                 </div>
             </div>
         </section>
+        <!-- ======================================== -->
+<!-- COMPLETE MENU SECTION -->
+<!-- ======================================== -->
+<!-- ======================================== -->
+<!-- COMPLETE MENU SECTION - CLICKABLE ITEMS -->
+<!-- ======================================== -->
+<section id="menu" class="menu-section">
+    <div class="container">
+        <h2 class="section-title">Our Complete Menu</h2>
+        <p class="section-subtitle">Click any item to view details & order</p>
+        
+        <!-- Menu Categories Filter -->
+        <div class="menu-categories">
+            <button class="menu-cat-btn active" onclick="filterMenu('all', this)">All Items</button>
+            <button class="menu-cat-btn" onclick="filterMenu('rwandan', this)">🇷🇼 Rwandan</button>
+            <button class="menu-cat-btn" onclick="filterMenu('italian', this)">🇮🇹 Italian</button>
+            <button class="menu-cat-btn" onclick="filterMenu('burgers', this)">🍔 Burgers</button>
+            <button class="menu-cat-btn" onclick="filterMenu('pizza', this)">🍕 Pizza</button>
+            <button class="menu-cat-btn" onclick="filterMenu('pasta', this)">🍝 Pasta</button>
+            <button class="menu-cat-btn" onclick="filterMenu('seafood', this)">🍣 Seafood</button>
+            <button class="menu-cat-btn" onclick="filterMenu('desserts', this)">🍰 Desserts</button>
+            <button class="menu-cat-btn" onclick="filterMenu('drinks', this)">🥤 Drinks</button>
+        </div>
+
+        <!-- Menu Grid -->
+        <div class="menu-grid" id="menuGrid">
+            
+            <!-- RWANDAN DISHES -->
+            <div class="menu-card" data-category="rwandan" data-id="25" data-name="Isombe" data-description="Traditional Rwandan dish made from cassava leaves, carefully pounded and cooked with eggplant, spinach, and palm oil. Served with onions, tomatoes, and a blend of aromatic spices." data-ingredients="Cassava leaves, eggplant, spinach, palm oil, onions, tomatoes, garlic, salt" data-price="12" data-image="https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(25, 'Isombe', 12, 'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Isombe</h3>
+                    <p>Traditional Rwandan cassava leaves dish with eggplant and palm oil.</p>
+                    <div class="card-footer">
+                        <span class="price">12k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(25, 'Isombe', 12, 'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="rwandan" data-id="26" data-name="Brochettes" data-description="Succulent meat skewers marinated in a blend of Rwandan spices, grilled to perfection over charcoal. Served with fresh salad, fried plantains (mizuzu), and our special spicy sauce." data-ingredients="Meat (goat/beef/chicken), Rwandan spices, onions, bell peppers, garlic, ginger, chili, salt" data-price="14" data-image="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(26, 'Brochettes', 14, 'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Brochettes</h3>
+                    <p>Grilled meat skewers with Rwandan spices, served with mizuzu.</p>
+                    <div class="card-footer">
+                        <span class="price">14k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(26, 'Brochettes', 14, 'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="rwandan" data-id="27" data-name="Ubugali with Beans" data-description="Traditional East African staple made from maize flour, cooked to a firm consistency. Served with slow-cooked beans in a rich tomato sauce, accompanied by sautéed greens." data-ingredients="Maize flour, kidney beans, tomatoes, onions, garlic, spinach, salt, pepper" data-price="10" data-image="https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(27, 'Ubugali with Beans', 10, 'https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Ubugali with Beans</h3>
+                    <p>Maize flour staple served with slow-cooked beans in tomato sauce.</p>
+                    <div class="card-footer">
+                        <span class="price">10k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(27, 'Ubugali with Beans', 10, 'https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="rwandan" data-id="28" data-name="Mizuzu" data-description="Sweet ripe plantains sliced and fried until golden brown and caramelized. A beloved Rwandan side dish that can be enjoyed as a snack or accompaniment to main meals." data-ingredients="Ripe plantains, vegetable oil, salt" data-price="8" data-image="https://images.unsplash.com/photo-1528751014936-863e6e7a319c?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1528751014936-863e6e7a319c?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(28, 'Mizuzu', 8, 'https://images.unsplash.com/photo-1528751014936-863e6e7a319c?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Mizuzu</h3>
+                    <p>Sweet fried plantains, a beloved Rwandan side dish.</p>
+                    <div class="card-footer">
+                        <span class="price">8k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(28, 'Mizuzu', 8, 'https://images.unsplash.com/photo-1528751014936-863e6e7a319c?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ITALIAN DISHES -->
+            <div class="menu-card" data-category="italian" data-id="29" data-name="Truffle Margherita Pizza" data-description="Our signature Italian pizza featuring San Marzano tomatoes from Campania, fresh mozzarella di bufala, fragrant basil leaves, and a luxurious drizzle of black truffle oil." data-ingredients="Pizza dough, San Marzano tomatoes, mozzarella di bufala, fresh basil, black truffle oil, olive oil, salt" data-price="12" data-image="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(29, 'Truffle Margherita Pizza', 12, 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Truffle Margherita Pizza</h3>
+                    <p>San Marzano tomatoes, fresh mozzarella, basil, and truffle oil.</p>
+                    <div class="card-footer">
+                        <span class="price">12k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(29, 'Truffle Margherita Pizza', 12, 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="italian" data-id="30" data-name="Classic Carbonara" data-description="Authentic Roman pasta dish made with handmade spaghetti, crispy guanciale (cured pork jowl), creamy egg yolk sauce, aged pecorino romano cheese, and freshly cracked black pepper." data-ingredients="Spaghetti, guanciale, egg yolks, pecorino romano cheese, black pepper, salt" data-price="14" data-image="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(30, 'Classic Carbonara', 14, 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Classic Carbonara</h3>
+                    <p>Handmade spaghetti with guanciale, egg yolk, and pecorino.</p>
+                    <div class="card-footer">
+                        <span class="price">14k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(30, 'Classic Carbonara', 14, 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BURGERS -->
+            <div class="menu-card" data-category="burgers" data-id="1" data-name="Classic Beef Burger" data-description="Juicy beef patty topped with lettuce, tomato, onion, pickles, and our special sauce on a toasted brioche bun. Served with French fries." data-ingredients="Beef patty, brioche bun, lettuce, tomato, onion, pickles, cheese, special sauce" data-price="14" data-image="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(1, 'Classic Beef Burger', 14, 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Classic Beef Burger</h3>
+                    <p>Juicy burger with special sauce and fries.</p>
+                    <div class="card-footer">
+                        <span class="price">14k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(1, 'Classic Beef Burger', 14, 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="burgers" data-id="31" data-name="Chicken Burger" data-description="Crispy chicken patty with mayo and fresh vegetables on a soft bun. A lighter alternative to beef." data-ingredients="Chicken breast, bun, lettuce, tomato, mayo, pickles" data-price="13" data-image="https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(31, 'Chicken Burger', 13, 'https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Chicken Burger</h3>
+                    <p>Crispy chicken with mayo and vegetables.</p>
+                    <div class="card-footer">
+                        <span class="price">13k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(31, 'Chicken Burger', 13, 'https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PIZZA -->
+            <div class="menu-card" data-category="pizza" data-id="32" data-name="Pepperoni Pizza" data-description="Classic pizza topped with tomato sauce, mozzarella cheese, and spicy pepperoni slices. A timeless favorite." data-ingredients="Pizza dough, tomato sauce, mozzarella, pepperoni, oregano" data-price="13" data-image="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(32, 'Pepperoni Pizza', 13, 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Pepperoni Pizza</h3>
+                    <p>Classic pizza with spicy pepperoni.</p>
+                    <div class="card-footer">
+                        <span class="price">13k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(32, 'Pepperoni Pizza', 13, 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="pizza" data-id="2" data-name="BBQ Chicken Pizza" data-description="Pizza topped with BBQ sauce, grilled chicken, red onions, cilantro, and mozzarella cheese." data-ingredients="Pizza dough, BBQ sauce, grilled chicken, mozzarella, red onions, cilantro" data-price="14" data-image="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(2, 'BBQ Chicken Pizza', 14, 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>BBQ Chicken Pizza</h3>
+                    <p>BBQ sauce with grilled chicken.</p>
+                    <div class="card-footer">
+                        <span class="price">14k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(2, 'BBQ Chicken Pizza', 14, 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PASTA -->
+            <div class="menu-card" data-category="pasta" data-id="33" data-name="Spaghetti Bolognese" data-description="Classic Italian pasta with rich meat sauce made from ground beef, tomatoes, onions, and herbs. Topped with parmesan cheese." data-ingredients="Spaghetti, ground beef, tomatoes, onions, garlic, carrots, celery, parmesan" data-price="14" data-image="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(33, 'Spaghetti Bolognese', 14, 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Spaghetti Bolognese</h3>
+                    <p>Classic pasta with rich meat sauce.</p>
+                    <div class="card-footer">
+                        <span class="price">14k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(33, 'Spaghetti Bolognese', 14, 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="pasta" data-id="4" data-name="Chicken Alfredo Pasta" data-description="Fettuccine pasta tossed in a creamy parmesan sauce with butter and cream. Add grilled chicken for extra protein." data-ingredients="Fettuccine, parmesan cheese, butter, cream, garlic, parsley, chicken" data-price="15" data-image="https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(4, 'Chicken Alfredo Pasta', 15, 'https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Chicken Alfredo Pasta</h3>
+                    <p>Creamy parmesan fettuccine with chicken.</p>
+                    <div class="card-footer">
+                        <span class="price">15k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(4, 'Chicken Alfredo Pasta', 15, 'https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEAFOOD -->
+            <div class="menu-card" data-category="seafood" data-id="3" data-name="Grilled Salmon" data-description="Fresh tilapia or salmon grilled with lemon butter and herbs. Served with rice and steamed vegetables." data-ingredients="Fresh salmon, lemon, butter, herbs, garlic, salt, pepper" data-price="20" data-image="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(3, 'Grilled Salmon', 20, 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Grilled Salmon</h3>
+                    <p>Fresh fish with lemon butter.</p>
+                    <div class="card-footer">
+                        <span class="price">20k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(3, 'Grilled Salmon', 20, 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="seafood" data-id="34" data-name="Grilled Shrimp" data-description="Jumbo shrimp marinated in garlic and herbs, grilled to perfection. Served with rice pilaf and grilled vegetables." data-ingredients="Shrimp, garlic, butter, lemon, herbs, olive oil" data-price="20" data-image="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(34, 'Grilled Shrimp', 20, 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Grilled Shrimp</h3>
+                    <p>Jumbo shrimp with garlic butter.</p>
+                    <div class="card-footer">
+                        <span class="price">20k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(34, 'Grilled Shrimp', 20, 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DESSERTS -->
+            <div class="menu-card" data-category="desserts" data-id="35" data-name="Tiramisu" data-description="Classic Italian dessert made with espresso-soaked ladyfingers layered with a light, creamy mascarpone mixture, and dusted with premium cocoa powder." data-ingredients="Ladyfingers, espresso, mascarpone cheese, eggs, sugar, cocoa powder, vanilla" data-price="16" data-image="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(35, 'Tiramisu', 16, 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Tiramisu</h3>
+                    <p>Espresso-soaked ladyfingers with mascarpone cream.</p>
+                    <div class="card-footer">
+                        <span class="price">16k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(35, 'Tiramisu', 16, 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="desserts" data-id="36" data-name="Chocolate Cake" data-description="Rich, moist chocolate cake layered with chocolate ganache frosting. A chocolate lover's dream." data-ingredients="Flour, cocoa powder, sugar, eggs, butter, chocolate, cream" data-price="10" data-image="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(36, 'Chocolate Cake', 10, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Chocolate Cake</h3>
+                    <p>Rich chocolate cake with ganache.</p>
+                    <div class="card-footer">
+                        <span class="price">10k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(36, 'Chocolate Cake', 10, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DRINKS -->
+            <div class="menu-card" data-category="drinks" data-id="37" data-name="Fresh Fruit Juices" data-description="Freshly squeezed juices made from organic fruits. Choose from orange, mango, pineapple, apple, or passion fruit. No added sugar." data-ingredients="Fresh fruits (orange/mango/pineapple/apple/passion), water, ice" data-price="6" data-image="https://images.unsplash.com/photo-1613478201744-71406663f507?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1613478201744-71406663f507?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(37, 'Fresh Fruit Juices', 6, 'https://images.unsplash.com/photo-1613478201744-71406663f507?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Fresh Fruit Juices</h3>
+                    <p>Orange, mango, pineapple, apple, passion.</p>
+                    <div class="card-footer">
+                        <span class="price">6k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(37, 'Fresh Fruit Juices', 6, 'https://images.unsplash.com/photo-1613478201744-71406663f507?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="drinks" data-id="38" data-name="Cappuccino" data-description="Classic Italian coffee with espresso, steamed milk, and a thick layer of foam. Dust with cocoa or cinnamon." data-ingredients="Espresso, steamed milk, milk foam, cocoa powder" data-price="6" data-image="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(38, 'Cappuccino', 6, 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Cappuccino</h3>
+                    <p>Espresso with steamed milk and foam.</p>
+                    <div class="card-footer">
+                        <span class="price">6k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(38, 'Cappuccino', 6, 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="drinks" data-id="39" data-name="Local Beer" data-description="Selection of Rwandan craft beers and popular international brands. Served chilled." data-ingredients="Beer (Primus, Mützig, Heineken, Tusker)" data-price="5" data-image="https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(39, 'Local Beer', 5, 'https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Local Beer</h3>
+                    <p>Primus, Mützig, Heineken, Tusker.</p>
+                    <div class="card-footer">
+                        <span class="price">5k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(39, 'Local Beer', 5, 'https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="drinks" data-id="40" data-name="Mojito" data-description="Classic Cuban cocktail with white rum, fresh mint, lime juice, sugar, and soda water." data-ingredients="White rum, fresh mint, lime juice, sugar, soda water, ice" data-price="12" data-image="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=500&q=60">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=500&q=60');" loading="lazy">
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart(40, 'Mojito', 12, 'https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=500&q=60')">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+                <div class="card-content" onclick="showItemDetails(this.closest('.menu-card'))">
+                    <h3>Mojito</h3>
+                    <p>Rum, mint, lime cocktail.</p>
+                    <div class="card-footer">
+                        <span class="price">12k</span>
+                        <button class="order-now-btn" onclick="event.stopPropagation(); quickAddToCart(40, 'Mojito', 12, 'https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=500&q=60')">
+                            <i class="fas fa-shopping-bag"></i> Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
         <!-- ======================================== -->
         <!-- 4. WHY CHOOSE US -->
         <!-- ======================================== -->
+       
         <section class="why-choose-us">
             <div class="container">
                 <h2 class="section-title">Why Choose Us</h2>
@@ -547,10 +946,23 @@
                         </div>
                         <a href="#menu" class="btn-primary">Explore Our Menu</a>
                     </div>
-                    <div class="about-images">
-                       <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80" alt="Chef cooking" loading="lazy">
-                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80" alt="Restaurant interior">
-                    </div>
+                    <!-- ABOUT US IMAGES (Optimized) -->
+<div class="about-images">
+    <img 
+        src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80" 
+        alt="Chef cooking at JD Cucina" 
+        width="600" 
+        height="400" 
+        loading="lazy" 
+        decoding="async">
+    <img 
+        src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80" 
+        alt="JD Cucina Restaurant interior" 
+        width="600" 
+        height="400" 
+        loading="lazy" 
+        decoding="async">
+</div>
                 </div>
             </div>
         </section>
@@ -627,123 +1039,74 @@
         <!-- ======================================== -->
         <!-- 7. CUSTOMER REVIEWS -->
         <!-- ======================================== -->
-        <section class="customer-reviews">
-            <div class="container">
-                <h2 class="section-title">Customer Reviews</h2>
-                <p class="section-subtitle">What our customers say about us</p>
-                <div class="reviews-slider">
-                    
-                    <div class="review-card">
-                        <div class="review-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p class="review-text">"Amazing food and excellent service. The brochettes are the best I've ever tasted in Kigali. I will definitely come back with my family!"</p>
-                        <div class="reviewer">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Customer">
-                            <div>
-                                <h4>Jean Pierre</h4>
-                                <span>Regular Customer</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p class="review-text">"The burgers are the best I've ever tasted. Fast delivery and the food always arrives hot. Highly recommend JD Cucina!"</p>
-                        <div class="reviewer">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Customer">
-                            <div>
-                                <h4>Sarah Johnson</h4>
-                                <span>Food Blogger</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <p class="review-text">"Great atmosphere and wonderful Italian pasta. The tiramisu is to die for. Perfect place for date night!"</p>
-                        <div class="reviewer">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="Customer">
-                            <div>
-                                <h4>David Mugisha</h4>
-                                <span>Verified Customer</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p class="review-text">"Excellent service and the isombe reminds me of home. Love that they combine Rwandan and Italian cuisine. Best restaurant in Kigali!"</p>
-                        <div class="reviewer">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&q=80" alt="Customer">
-                            <div>
-                                <h4>Marie Claire</h4>
-                                <span>Local Guide</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
+       
 
         <!-- ======================================== -->
         <!-- 8. GALLERY -->
         <!-- ======================================== -->
-        <section class="gallery">
-            <div class="container">
-                <h2 class="section-title">Our Gallery</h2>
-                <p class="section-subtitle">Take a look inside JD Cucina</p>
-                <div class="gallery-grid">
-                    <div class="gallery-item" onclick="openLightbox(0)">
-                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500&q=80" alt="Restaurant interior"loading="lazy">
-                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(1)">
-                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=500&q=80" alt="Dining area"loading="lazy">
-                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(2)">
-                        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=500&q=80" alt="Chef cooking"loading="lazy">
-                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(3)">
-                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=500&q=80" alt="Popular dishes"loading="lazy">
-                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(4)">
-                        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=500&q=80" alt="Drinks"loading="lazy">
-                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(5)">
-                        <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=500&q=80" alt="Desserts"loading="lazy">
-                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+     <!-- GALLERY IMAGES (Optimized) -->
+<div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox(0)">
+        <img 
+            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500&q=80" 
+            alt="Restaurant interior" 
+            width="500" 
+            height="500" 
+            loading="lazy" 
+            decoding="async">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(1)">
+        <img 
+            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=500&q=80" 
+            alt="Dining area" 
+            width="500" 
+            height="500" 
+            loading="lazy" 
+            decoding="async">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(2)">
+        <img 
+            src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=500&q=80" 
+            alt="Chef cooking" 
+            width="500" 
+            height="500" 
+            loading="lazy" 
+            decoding="async">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(3)">
+        <img 
+            src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=500&q=80" 
+            alt="Popular dishes" 
+            width="500" 
+            height="500" 
+            loading="lazy" 
+            decoding="async">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(4)">
+        <img 
+            src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=500&q=80" 
+            alt="Drinks" 
+            width="500" 
+            height="500" 
+            loading="lazy" 
+            decoding="async">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(5)">
+        <img 
+            src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=500&q=80" 
+            alt="Desserts" 
+            width="500" 
+            height="500" 
+            loading="lazy" 
+            decoding="async">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+</div>
 
         <!-- LIGHTBOX -->
         <div class="lightbox" id="lightbox" onclick="closeLightbox()">
@@ -1037,13 +1400,13 @@
                             <h4><i class="fas fa-phone-alt"></i> Need Help?</h4>
                             <p>Having issues with your order? Our support team is here to help!</p>
                             <div class="contact-buttons">
-                                <a href="tel:+250788123456" class="contact-btn">
-                                    <i class="fas fa-phone"></i> Call Us
-                                </a>
-                                <a href="https://wa.me/250788123456" class="contact-btn whatsapp">
-                                    <i class="fab fa-whatsapp"></i> WhatsApp
-                                </a>
-                            </div>
+    <a href="tel:+250792499258" class="contact-btn">
+        <i class="fas fa-phone"></i> Call Us
+    </a>
+    <a href="https://wa.me/250792499258?text=Hello%20JD%20Cucina,%20I%20would%20like%20to%20make%20an%20order%20or%20reservation." class="contact-btn whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+</div>
                         </div>
                     </div>
                 </div>
@@ -1093,12 +1456,20 @@
                             <p>Mon - Fri: 11:00 AM - 10:00 PM</p>
                             <p>Sat - Sun: 10:00 AM - 11:00 PM</p>
                         </div>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        </div>
+<div class="social-links">
+    <a href="https://www.facebook.com/mayestro.fernandez" target="_blank" title="Follow us on Facebook">
+        <i class="fab fa-facebook"></i>
+    </a>
+    <a href="https://www.instagram.com/anton_21_jd/" target="_blank" title="Follow us on Instagram">
+        <i class="fab fa-instagram"></i>
+    </a>
+    <a href="#" target="_blank" title="Follow us on Twitter">
+        <i class="fab fa-twitter"></i>
+    </a>
+    <a href="https://wa.me/250792499258?text=Hello%20JD%20Cucina,%20I%20have%20a%20question." target="_blank" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
                     </div>
                     <div class="map-container">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.1234567890123!2d30.0588!3d-1.9536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca76b0b0b0b0b%3A0x0b0b0b0b0b0b0b0b!2sKigali%2C%20Rwanda!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
@@ -1575,9 +1946,13 @@
     </div>
 
     <!-- LIVE CHAT BUTTON -->
-    <div class="live-chat" onclick="toggleChat()">
-        <i class="fas fa-comments"></i>
-    </div>
+<!-- WHATSAPP CHAT BUTTON -->
+<a href="https://wa.me/250792499258?text=Hello%20JD%20Cucina,%20I%20would%20like%20to%20place%20an%20order%20or%20make%20a%20reservation." 
+   class="live-chat whatsapp-chat" 
+   target="_blank" 
+   title="Chat with us on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
     <!-- SCROLL TO TOP BUTTON -->
     <button class="scroll-top" onclick="scrollToTop()">

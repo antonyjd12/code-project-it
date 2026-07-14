@@ -3158,3 +3158,434 @@ html, body {
         margin: 10px auto !important;
     }
 }
+
+/* ========================================
+   PERFORMANCE: RESPONSIVE IMAGE HANDLING
+   Prevents layout shift while keeping images mobile-friendly
+   ======================================== */
+img[loading="lazy"] {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Ensure gallery items maintain aspect ratio on mobile */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Ensure review avatars stay circular and sized correctly */
+.reviewer img {
+    object-fit: cover;
+}
+
+/* ========================================
+   MENU SECTION STYLES
+   ======================================== */
+
+.menu-section {
+    padding: 80px 0;
+    background: var(--bg-color);
+}
+
+.menu-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.menu-cat-btn {
+    padding: 10px 20px;
+    background: var(--white);
+    border: 2px solid var(--border-color);
+    border-radius: 25px;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.menu-cat-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.menu-cat-btn.active {
+    background: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.menu-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.menu-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.menu-card.hidden {
+    display: none;
+}
+
+.card-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.card-content p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.card-footer .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.add-to-cart-btn {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.add-to-cart-btn:hover {
+    background: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu-categories {
+        gap: 8px;
+    }
+    
+    .menu-cat-btn {
+        padding: 8px 15px;
+        font-size: 0.85rem;
+    }
+    
+    .menu-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+}
+
+/* ========================================
+   MENU CARD INTERACTIVE BUTTONS
+   ======================================== */
+
+/* Quick Add Button (top-right corner) */
+.quick-add-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quick-add-btn:hover {
+    background: var(--secondary-color);
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Order Now Button (in footer) */
+.order-now-btn {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--primary-color), #a04000);
+    color: var(--white);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(211, 84, 0, 0.3);
+}
+
+.order-now-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(211, 84, 0, 0.4);
+}
+
+.order-now-btn i {
+    font-size: 0.9rem;
+}
+
+/* Card content cursor */
+.card-content {
+    cursor: pointer;
+}
+
+/* Item Details Modal */
+.item-details-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.item-details-modal.active {
+    display: flex;
+}
+
+.item-details-content {
+    background: var(--white);
+    border-radius: 20px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideInUp 0.4s ease;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.item-details-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: var(--white);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    z-index: 10;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-details-close:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: rotate(90deg);
+}
+
+.item-details-image {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px 20px 0 0;
+}
+
+.item-details-body {
+    padding: 30px;
+}
+
+.item-details-body h2 {
+    color: var(--secondary-color);
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.item-details-body .description {
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.item-details-body .ingredients {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.item-details-body .ingredients h4 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.item-details-body .ingredients p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.item-details-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 2px solid #eee;
+}
+
+.item-details-footer .price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.item-details-footer .order-btn-large {
+    padding: 15px 40px;
+    background: linear-gradient(135deg, var(--primary-color), #a04000);
+    color: var(--white);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 6px 20px rgba(211, 84, 0, 0.3);
+}
+
+.item-details-footer .order-btn-large:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(211, 84, 0, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .item-details-image {
+        height: 200px;
+    }
+    
+    .item-details-body h2 {
+        font-size: 1.5rem;
+    }
+    
+    .item-details-footer {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .item-details-footer .order-btn-large {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ========================================
+   WHATSAPP CHAT BUTTON STYLES
+   ======================================== */
+
+.whatsapp-chat {
+    background: #25D366 !important;
+    text-decoration: none;
+    animation: whatsappPulse 2s infinite;
+}
+
+.whatsapp-chat:hover {
+    background: #20ba5a !important;
+    transform: scale(1.1);
+}
+
+@keyframes whatsappPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+}
+
+/* Optional: Add notification badge */
+.whatsapp-chat::before {
+    content: '1';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4757;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    animation: bounce 1s infinite;
+}
