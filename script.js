@@ -610,3 +610,199 @@ function placeOrder() {
 
     }, 3000); // 3 seconds processing time
 }
+
+/* ========================================
+   CONTACT FORM & FAQ FUNCTIONALITY
+   ======================================== */
+
+// Character counter for message
+const contactMessage = document.getElementById('contactMessage');
+const charCount = document.getElementById('charCount');
+
+if (contactMessage && charCount) {
+    contactMessage.addEventListener('input', function() {
+        const count = this.value.length;
+        charCount.textContent = count;
+        
+        if (count > 500) {
+            charCount.style.color = '#ff4757';
+            this.value = this.value.substring(0, 500);
+        } else if (count > 400) {
+            charCount.style.color = '#ffa502';
+        } else {
+            charCount.style.color = 'rgba(255, 255, 255, 0.5)';
+        }
+    });
+}
+
+// Handle Contact Form Submission
+function handleContactForm(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('contactName').value.trim();
+    const email = document.getElementById('contactEmail').value.trim();
+    const phone = document.getElementById('contactPhone').value.trim();
+    const subject = document.getElementById('contactSubject').value;
+    const message = document.getElementById('contactMessage').value.trim();
+    const privacy = document.getElementById('contactPrivacy').checked;
+    const submitBtn = document.getElementById('submitBtn');
+    
+    // Clear previous errors
+    document.querySelectorAll('.form-error').forEach(el => el.textContent = '');
+    
+    let isValid = true;
+    
+    // Validation
+    if (!name || name.length < 2) {
+        document.getElementById('nameError').textContent = 'Please enter your full name';
+        isValid = false;
+    }
+    
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.getElementById('emailError').textContent = 'Please enter a valid email';
+        isValid = false;
+    }
+    
+    if (!phone || phone.replace(/\D/g, '').length < 10) {
+        document.getElementById('phoneError').textContent = 'Please enter a valid phone number';
+        isValid = false;
+    }
+    
+    if (!subject) {
+        document.getElementById('subjectError').textContent = 'Please select a subject';
+        isValid = false;
+    }
+    
+    if (!message || message.length < 10) {
+        document.getElementById('messageError').textContent = 'Message must be at least 10 characters';
+        isValid = false;
+    }
+    
+    if (!privacy) {
+        showContactNotification('Please accept the Privacy Policy to continue', 'error');
+        isValid = false;
+    }
+    
+    if (!isValid) return;
+    
+    // Show loading state
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+    
+    // Build WhatsApp message
+    const whatsappMessage = `*New Contact Message from JD Cucina Website*%0A%0A` +
+        `*Name:* ${encodeURIComponent(name)}%0A` +
+        `*Email:* ${encodeURIComponent(email)}%0A` +
+        `*Phone:* ${encodeURIComponent(phone)}%0A` +
+        `*Subject:* ${encodeURIComponent(subject)}%0A%0A` +
+        `*Message:*%0A${encodeURIComponent(message)}`;
+    
+    // Simulate processing then open WhatsApp
+    setTimeout(() => {
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+        
+        // Show success notification
+        showContactNotification('Message prepared! Opening WhatsApp...', 'success');
+        
+        // Open WhatsApp with pre-filled message
+        setTimeout(() => {
+            window.open(`https://wa.me/250792499258?text=${whatsappMessage}`, '_blank');
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
+            if (charCount) charCount.textContent = '0';
+        }, 1000);
+        
+    }, 1500);
+}
+
+// Contact notification
+function showContactNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    const bgColor = type === 'error' ? 'linear-gradient(135deg, #ff4757, #c0392b)' : 'linear-gradient(135deg, #2ed573, #27ae60)';
+    
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 30px;
+        background: ${bgColor};
+        color: white;
+        padding: 15px 25px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        z-index: 99999;
+        font-weight: 600;
+        animation: slideInRight 0.3s ease;
+        max-width: 350px;
+    `;
+    
+    const icon = type === 'error' ? 'fa-exclamation-circle' : 'fa-check-circle';
+    notification.innerHTML = `<i class="fas ${icon}"></i> ${message}`;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// FAQ Toggle
+function toggleFaq(element) {
+    const faqItem = element.parentElement;
+    const isActive = faqItem.classList.contains('active');
+    
+    // Close all FAQs
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('active');
+    });
+    
+    // Open clicked one if it wasn't active
+    if (!isActive) {
+        faqItem.classList.add('active');
+    }
+}
+
+// Open/Closed Status Indicator
+function updateOpenStatus() {
+    const statusIndicator = document.getElementById('openStatus');
+    if (!statusIndicator) return;
+    
+    const now = new Date();
+    const day = now.getDay(); // 0 = Sunday, 6 = Saturday
+    const hour = now.getHours();
+    const minutes = now.getMinutes();
+    const currentTime = hour + minutes / 60;
+    
+    let isOpen = false;
+    let statusText = '';
+    
+    // Check if currently open based on business hours
+    if (day >= 1 && day <= 5) {
+        // Monday - Friday: 11:00 AM - 10:00 PM
+        if (currentTime >= 11 && currentTime < 22) {
+            isOpen = true;
+            statusText = 'We are currently OPEN';
+        } else {
+            statusText = 'We are currently CLOSED';
+        }
+    } else {
+        // Saturday - Sunday: 10:00 AM - 11:00 PM
+        if (currentTime >= 10 && currentTime < 23) {
+            isOpen = true;
+            statusText = 'We are currently OPEN';
+        } else {
+            statusText = 'We are currently CLOSED';
+        }
+    }
+    
+    statusIndicator.classList.add(isOpen ? 'open' : 'closed');
+    statusIndicator.querySelector('.status-text').textContent = statusText;
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    updateOpenStatus();
+    // Update status every minute
+    setInterval(updateOpenStatus, 60000);
+});
