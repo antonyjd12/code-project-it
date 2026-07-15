@@ -11,7 +11,18 @@
     
     <!-- Title -->
     <title>JD Cucina - Taste the Best Food in Kigali</title>
-    
+      <script>
+        setTimeout(function() {
+            var loader = document.getElementById('pageLoader');
+            if (loader) {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+                setTimeout(function() {
+                    loader.style.display = 'none';
+                }, 800);
+            }
+        }, 3000); // 3000 milliseconds = 3 seconds
+    </script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
