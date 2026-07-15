@@ -1852,34 +1852,89 @@
                     </div>
                 </div>
 
-                <!-- Payment Method -->
+              
+                              <!-- Payment Method -->
                 <div class="confirmation-section">
                     <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
-                    <div class="payment-options">
-                        <label class="payment-option">
-                            <input type="radio" name="paymentMethod" value="cash" checked>
-                            <div class="payment-info">
-                                <i class="fas fa-money-bill-wave"></i>
-                                <span>Cash on Delivery</span>
+                    <div class="payment-options-enhanced">
+                        
+                        <!-- MTN Mobile Money -->
+                        <label class="payment-option-card" onclick="selectPayment('momo')">
+                            <input type="radio" name="paymentMethod" value="momo" checked>
+                            <div class="payment-card-content">
+                                <div class="payment-icon momo-icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <div class="payment-details">
+                                    <h4>MTN Mobile Money</h4>
+                                    <p>Pay instantly using your MTN MoMo account</p>
+                                </div>
+                                <div class="payment-check"><i class="fas fa-check-circle"></i></div>
                             </div>
                         </label>
-                        <label class="payment-option">
-                            <input type="radio" name="paymentMethod" value="momo">
-                            <div class="payment-info">
-                                <i class="fas fa-mobile-alt"></i>
-                                <span>Mobile Money (MTN/Airtel)</span>
+
+                        <!-- Airtel Money -->
+                        <label class="payment-option-card" onclick="selectPayment('airtel')">
+                            <input type="radio" name="paymentMethod" value="airtel">
+                            <div class="payment-card-content">
+                                <div class="payment-icon airtel-icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <div class="payment-details">
+                                    <h4>Airtel Money</h4>
+                                    <p>Pay instantly using your Airtel Money account</p>
+                                </div>
+                                <div class="payment-check"><i class="fas fa-check-circle"></i></div>
                             </div>
                         </label>
-                        <label class="payment-option">
-                            <input type="radio" name="paymentMethod" value="card">
-                            <div class="payment-info">
-                                <i class="fas fa-credit-card"></i>
-                                <span>Credit/Debit Card</span>
+
+                        <!-- Bank Transfer -->
+                        <label class="payment-option-card" onclick="selectPayment('bank')">
+                            <input type="radio" name="paymentMethod" value="bank">
+                            <div class="payment-card-content">
+                                <div class="payment-icon bank-icon">
+                                    <i class="fas fa-university"></i>
+                                </div>
+                                <div class="payment-details">
+                                    <h4>Bank Transfer</h4>
+                                    <p>Direct transfer to our bank account</p>
+                                </div>
+                                <div class="payment-check"><i class="fas fa-check-circle"></i></div>
                             </div>
                         </label>
+
+                    </div>
+
+                    <!-- Dynamic Payment Details Forms -->
+                    <div id="paymentDetailsForm" class="payment-details-form">
+                        <!-- MTN Form (Default) -->
+                        <div id="momo-form" class="payment-form-group active">
+                            <label><i class="fas fa-phone"></i> MTN Phone Number *</label>
+                            <input type="tel" id="momoNumber" placeholder="e.g., 078XXXXXXX" maxlength="10">
+                            <small class="form-hint">A prompt will be sent to this number to approve the payment.</small>
+                        </div>
+
+                        <!-- Airtel Form -->
+                        <div id="airtel-form" class="payment-form-group">
+                            <label><i class="fas fa-phone"></i> Airtel Phone Number *</label>
+                            <input type="tel" id="airtelNumber" placeholder="e.g., 072XXXXXXX" maxlength="10">
+                            <small class="form-hint">A prompt will be sent to this number to approve the payment.</small>
+                        </div>
+
+                        <!-- Bank Form -->
+                        <div id="bank-form" class="payment-form-group">
+                            <div class="bank-info-box">
+                                <h4><i class="fas fa-info-circle"></i> Bank Details</h4>
+                                <p><strong>Bank:</strong> Bank of Kigali (BK)</p>
+                                <p><strong>Account Name:</strong> JD Cucina Ltd</p>
+                                <p><strong>Account Number:</strong> 1000XXXXXXX</p>
+                                <p><strong>Reference:</strong> Please use your Order ID as reference.</p>
+                            </div>
+                            <label><i class="fas fa-receipt"></i> Transaction Reference / Sender Name *</label>
+                            <input type="text" id="bankReference" placeholder="e.g., John Doe or TXN12345">
+                        </div>
                     </div>
                 </div>
-
                 <!-- Total Summary -->
                 <div class="order-total-summary">
                     <div class="total-row">

@@ -505,3 +505,108 @@ if (!document.getElementById('notification-animations')) {
     `;
     document.head.appendChild(style);
 }
+
+/* ========================================
+   PAYMENT FUNCTIONALITY
+   ======================================== */
+
+// Switch payment form based on selection
+function selectPayment(method) {
+    // Hide all forms
+    document.querySelectorAll('.payment-form-group').forEach(form => {
+        form.classList.remove('active');
+    });
+    
+    // Show selected form
+    const selectedForm = document.getElementById(`${method}-form`);
+    if (selectedForm) {
+        selectedForm.classList.add('active');
+    }
+}
+
+// Enhanced Place Order Function with Validation & Processing Simulation
+function placeOrder() {
+    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+    let isValid = true;
+    let errorMessage = '';
+
+    // 1. Validate Payment Details
+    if (paymentMethod === 'momo') {
+        const momoNum = document.getElementById('momoNumber').value.trim();
+        if (!momoNum || momoNum.length < 10 || !momoNum.startsWith('078') && !momoNum.startsWith('079')) {
+            isValid = false;
+            errorMessage = 'Please enter a valid MTN number (e.g., 078XXXXXXX).';
+        }
+    } else if (paymentMethod === 'airtel') {
+        const airtelNum = document.getElementById('airtelNumber').value.trim();
+        if (!airtelNum || airtelNum.length < 10 || !airtelNum.startsWith('072') && !airtelNum.startsWith('073')) {
+            isValid = false;
+            errorMessage = 'Please enter a valid Airtel number (e.g., 072XXXXXXX).';
+        }
+    } else if (paymentMethod === 'bank') {
+        const bankRef = document.getElementById('bankReference').value.trim();
+        if (!bankRef || bankRef.length < 3) {
+            isValid = false;
+            errorMessage = 'Please enter your name or transaction reference.';
+        }
+    }
+
+    if (!isValid) {
+        showNotification(errorMessage);
+        return; // Stop execution
+    }
+
+    // 2. Show Processing Overlay
+    const step4 = document.getElementById('step4');
+    const overlay = document.createElement('div');
+    overlay.className = 'processing-overlay active';
+    overlay.innerHTML = `
+        <div class="spinner"></div>
+        <p>Processing Payment...</p>
+        <small style="color: rgba(255,255,255,0.6); margin-top: 10px;">Please do not close this window</small>
+    `;
+    step4.style.position = 'relative';
+    step4.appendChild(overlay);
+
+    // 3. Simulate API Call / Payment Processing (3 seconds)
+    setTimeout(() => {
+        // Remove overlay
+        overlay.remove();
+        step4.style.position = 'static';
+
+        // Generate order details
+        const orderId = '#JD' + Math.floor(1000 + Math.random() * 9000);
+        const methodCard = document.querySelector(`.method-card[data-method="${deliveryOrder.method}"]`);
+        const deliveryTime = methodCard ? methodCard.dataset.time + ' minutes' : '30-45 minutes';
+
+        // Update success modal
+        document.getElementById('successOrderId').textContent = orderId;
+        document.getElementById('successTime').textContent = deliveryTime;
+        document.getElementById('successTotal').textContent = `${deliveryOrder.total}k`;
+        
+        // Close delivery modal and show success
+        closeDeliveryModal();
+        document.getElementById('orderSuccessModal').classList.add('active');
+
+        // Clear cart
+        if (typeof cart !== 'undefined') {
+            cart = [];
+            if (typeof updateCartUI === 'function') updateCartUI();
+        }
+
+        // Save to localStorage
+        const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+        orders.push({
+            id: orderId,
+            items: deliveryOrder.items,
+            location: deliveryOrder.location,
+            method: deliveryOrder.method,
+            payment: paymentMethod,
+            total: deliveryOrder.total,
+            date: new Date().toISOString(),
+            status: 'paid'
+        });
+        localStorage.setItem('orders', JSON.stringify(orders));
+
+    }, 3000); // 3 seconds processing time
+}
